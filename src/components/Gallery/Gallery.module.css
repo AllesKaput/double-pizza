@@ -1,0 +1,63 @@
+.gallery {
+    position: relative;
+    width: 600px;
+    height: 400px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    object-fit: cover;
+}
+
+.nextArrow,
+.prevArrow,
+.nextArrowVertical,
+.prevArrowVertical {
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.nextArrow:hover,
+.prevArrow:hover,
+.nextArrowVertical:hover,
+.prevArrowVertical:hover {
+    background-color: rgba(255, 255, 255, 0.815);
+}
+
+.nextArrow,
+.prevArrow {
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.nextArrow {
+    right: 16px;
+}
+
+.prevArrow {
+    left: 16px;
+}
+
+.nextArrowVertical,
+.prevArrowVertical {
+    left: 50%;
+    /* Разворот, и небольшое перемещение для точного центрирования */
+    transform: rotate(90deg) translate(0, 50%);
+}
+
+.nextArrowVertical {
+    bottom: 16px;
+}
+
+.prevArrowVertical {
+    top: 16px;
+}
