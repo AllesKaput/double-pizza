@@ -1,0 +1,35 @@
+.headerRoot {
+    background-color: rgb(247, 228, 228);
+    min-width: max-content;
+}
+
+.headerContainer {
+    width: 1000px;
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.headerTitle {
+    margin: unset;
+}
+
+.headerIconBlock {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+    color: black;
+    font-size: 26px;
+}
+
+.headerIconBlock:hover {
+    filter: drop-shadow(0 0 10px rgba(78, 78, 78, 0.7));
+}

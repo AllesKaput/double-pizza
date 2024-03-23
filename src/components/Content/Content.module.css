@@ -1,0 +1,28 @@
+.contentBlock {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.contentContainer {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.leftPart,
+.rightPart {
+    border: 1px solid black;
+    width: 375px;
+    overflow: hidden;
+}
+
+.rightPart {
+    transform: rotate(180deg);
+}
+
+
+.leftPart img,
+.rightPart img {
+    object-fit: cover;
+}

@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     margin: unset;
+    z-index: 10;
 }
 
 .modal {
@@ -30,6 +31,7 @@
 
 .modalContent {
     padding: 16px;
+    width: 100%;
 }
 
 .modalHeader {
