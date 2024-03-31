@@ -4,7 +4,6 @@ import {
     faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Gallery.module.css";
-import { useState } from "react";
 import useSize from "../../hooks/useSize";
 
 const WIDTH_DEFAULT_HORIZONTAL = 800;
@@ -19,6 +18,8 @@ export default function Gallery({
     width,
     height,
     controlStyle = {},
+    currentImage,
+    setCurrentImage,
 }) {
     const screenWidth = useSize();
 
@@ -30,7 +31,7 @@ export default function Gallery({
         ? height || HEIGHT_DEFAULT_VERTICAL
         : height || HEIGHT_DEFAULT_HORIZONTAL;
 
-    const [currentImage, setCurrentImage] = useState(0);
+    // const [currentImage, setCurrentImage] = useState(0);
 
     function onPrevButton() {
         if (infinity && currentImage === 0) {

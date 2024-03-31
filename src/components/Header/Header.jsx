@@ -5,8 +5,12 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 
-export default function Header({ createNewOrder }) {
-    const [isCartWindowVisible, setIsCartWindowVisible] = useState(false);
+export default function Header({
+    createNewOrder,
+    isCartWindowVisible,
+    setIsCartWindowVisible,
+}) {
+   
 
     function getCartText() {
         return (

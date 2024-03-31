@@ -7,6 +7,15 @@ import { pizzaData } from "./pizzaData.js";
 
 function App() {
     const [currentData, setCurrentData] = useState(pizzaData);
+    const [isCartWindowVisible, setIsCartWindowVisible] = useState(false);
+
+    useEffect(() => {
+        if (isCartWindowVisible) {
+            document.body.classList.add("locked");
+        } else {
+            document.body.classList.remove("locked");
+        }
+    }, [isCartWindowVisible]);
 
     const createNewOrder = useCallback(() => {
         console.log("order created");
@@ -14,7 +23,11 @@ function App() {
 
     return (
         <div className={classes.container}>
-            <Header createNewOrder={createNewOrder} />
+            <Header
+                createNewOrder={createNewOrder}
+                isCartWindowVisible={isCartWindowVisible}
+                setIsCartWindowVisible={setIsCartWindowVisible}
+            />
             <Content currentData={currentData} />
         </div>
     );

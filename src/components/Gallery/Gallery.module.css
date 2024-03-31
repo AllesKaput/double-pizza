@@ -50,6 +50,7 @@
     left: 50%;
     /* Разворот, и небольшое перемещение для точного центрирования */
     transform: rotate(90deg) translate(0, 50%);
+    filter: drop-shadow(0 0 10px rgba(78, 78, 78, 0.7));
 }
 
 .nextArrowVertical {
