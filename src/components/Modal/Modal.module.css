@@ -32,6 +32,9 @@
 .modalContent {
     padding: 16px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .modalHeader {
@@ -54,4 +57,25 @@
     margin-top: 16px;
     display: flex;
     justify-content: space-around;
+}
+
+.okButton, .cancelButton {
+    outline: none;
+    border: none;
+    padding: 8px 16px;
+    box-shadow: 0 0 8px gray;
+    color: white;
+    cursor: pointer;
+}
+
+.modalFooter button:hover {
+    opacity: 0.7;
+}
+
+.okButton {
+    background-color: rgba(46, 204, 14, 0.884);
+}
+
+.cancelButton {
+    background-color: rgb(219, 11, 11);
 }

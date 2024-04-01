@@ -1,6 +1,5 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import classes from "./App.module.css";
-import Gallery from "./components/Gallery/Gallery.jsx";
 import Header from "./components/Header/Header.jsx";
 import Content from "./components/Content/Content.jsx";
 import { pizzaData } from "./pizzaData.js";
@@ -8,6 +7,7 @@ import { pizzaData } from "./pizzaData.js";
 function App() {
     const [currentData, setCurrentData] = useState(pizzaData);
     const [isCartWindowVisible, setIsCartWindowVisible] = useState(false);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         if (isCartWindowVisible) {
@@ -18,8 +18,12 @@ function App() {
     }, [isCartWindowVisible]);
 
     const createNewOrder = useCallback(() => {
-        console.log("order created");
-    }, []);
+        if (cart.length) {
+            alert("Order created!");
+        }
+        console.log("order button clicked");
+        setCart([]);
+    }, [cart]);
 
     return (
         <div className={classes.container}>
@@ -27,8 +31,10 @@ function App() {
                 createNewOrder={createNewOrder}
                 isCartWindowVisible={isCartWindowVisible}
                 setIsCartWindowVisible={setIsCartWindowVisible}
+                cart={cart}
+                setCart={setCart}
             />
-            <Content currentData={currentData} />
+            <Content currentData={currentData} cart={cart} />
         </div>
     );
 }

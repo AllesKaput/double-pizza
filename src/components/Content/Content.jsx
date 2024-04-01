@@ -2,13 +2,13 @@ import { useMemo, useState } from "react";
 import classes from "./Content.module.css";
 import Gallery from "../Gallery/Gallery";
 
-export default function Content({ currentData }) {
+export default function Content({ currentData, cart }) {
     const pizzaImages = useMemo(() => {
         return currentData.map((el) => el.photo);
     }, []);
 
-    const [currentLeftImage, setCurrentLeftImage] = useState(0);
-    const [currentRightImage, setCurrentRightImage] = useState(0);
+    const [currentLeftPizza, setCurrentLeftPizza] = useState(0);
+    const [currentRightPizza, setCurrentRightPizza] = useState(0);
 
     const controlStyle = {
         leftPart: {
@@ -22,45 +22,83 @@ export default function Content({ currentData }) {
         },
     };
 
+    function addToCart() {
+        cart.push({
+            title1: currentData[currentLeftPizza].title,
+            price1: currentData[currentLeftPizza].price,
+            title2: currentData[currentRightPizza].title,
+            price2: currentData[currentRightPizza].price,
+            summary:
+                +currentData[currentLeftPizza].price +
+                +currentData[currentRightPizza].price,
+        });
+    }
+
     return (
         <div className={classes.contentBlock}>
-            {/* <div className={classes.contentContainer}> */}
+            <div className={classes.contentContainer}>
                 <div className={classes.galleries}>
                     <div className={classes.leftPart}>
-                        <p className={classes.galleryTitle}>{currentData[currentLeftImage].title}</p>
-                        <p className={classes.galleryDescription}>{currentData[currentLeftImage].desc}</p>
+                        <p className={classes.galleryTitle}>
+                            {currentData[currentLeftPizza].title}
+                        </p>
+                        <p className={classes.galleryDescription}>
+                            {currentData[currentLeftPizza].desc}
+                        </p>
                         <Gallery
                             images={pizzaImages}
                             vertical={true}
                             infinity={true}
-                            width={650}
-                            height={600}
+                            width={600}
+                            height={550}
                             controlStyle={controlStyle.leftPart}
-                            currentImage={currentLeftImage}
-                            setCurrentImage={setCurrentLeftImage}
+                            currentImage={currentLeftPizza}
+                            setCurrentImage={setCurrentLeftPizza}
                         />
-                        <p>{currentData[currentLeftImage].price + "$"}</p>
+                        <p className={classes.price}>
+                            {currentData[currentLeftPizza].price}$
+                        </p>
                     </div>
 
                     <div className={classes.rightPart}>
-                        <p className={classes.galleryTitle}>{currentData[currentRightImage].title}</p>
-                        <p className={classes.galleryDescription}>{currentData[currentRightImage].desc}</p>
+                        <p className={classes.galleryTitle}>
+                            {currentData[currentRightPizza].title}
+                        </p>
+                        <p className={classes.galleryDescription}>
+                            {currentData[currentRightPizza].desc}
+                        </p>
                         <Gallery
                             images={pizzaImages}
                             vertical={true}
                             infinity={true}
-                            width={650}
-                            height={600}
+                            width={600}
+                            height={550}
                             controlStyle={controlStyle.rightPart}
-                            currentImage={currentRightImage}
-                            setCurrentImage={setCurrentRightImage}
+                            currentImage={currentRightPizza}
+                            setCurrentImage={setCurrentRightPizza}
                         />
-                        <p>{currentData[currentRightImage].price + "$"}</p>
+                        <p className={classes.price}>
+                            {currentData[currentRightPizza].price}$
+                        </p>
                     </div>
                 </div>
-                <p>summary price</p>
-                <button>Add to cart</button>
+                <div className={classes.contentFooter}>
+                    <p className={classes.summaryPrice}>
+                        Summary price:{" "}
+                        {+currentData[currentLeftPizza].price +
+                            +currentData[currentRightPizza].price}
+                        $
+                    </p>
+                    <button
+                        onClick={() => {
+                            addToCart();
+                        }}
+                        className={classes.addToCartButton}
+                    >
+                        Add to cart
+                    </button>
+                </div>
             </div>
-        // </div>
+        </div>
     );
 }

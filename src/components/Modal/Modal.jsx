@@ -44,14 +44,17 @@ export default function Modal({
                             <div className={classes.modalFooter}>
                                 {isCancelButton && (
                                     <button
-                                        className={classes.okButton}
+                                        className={classes.cancelButton}
                                         onClick={() => onCancel()}
                                     >
                                         Cancel
                                     </button>
                                 )}
 
-                                <button onClick={() => onSuccess()}>
+                                <button
+                                    className={classes.okButton}
+                                    onClick={() => onSuccess()}
+                                >
                                     {onSuccessButtonLabel || "Done"}
                                 </button>
                             </div>

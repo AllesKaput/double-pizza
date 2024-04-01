@@ -1,7 +1,6 @@
 import classes from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import { createPortal } from "react-dom";
 import Modal from "../Modal/Modal.jsx";
 
@@ -9,22 +8,32 @@ export default function Header({
     createNewOrder,
     isCartWindowVisible,
     setIsCartWindowVisible,
+    cart,
 }) {
-   
+    const CartList = () => {
+        return (
+            <ul>
+                {cart.map((item) => {
+                    return (
+                        <li key={item}>
+                            <div>{item.title1}</div>
+                            <div>{item.price1}$</div>
+                            <div>{item.title2}</div>
+                            <div>{item.price2}$</div>
+                            <div>Summary: {item.summary}$</div>
+                        </li>
+                    );
+                })}
+            </ul>
+        );
+    };
 
     function getCartText() {
-        return (
-            <div>
-                text text text text text text text text text text text text text
-                text text text text text text text text text text text text text
-                text text text text text text text text text text text text text
-                text text text text text text
-            </div>
-        );
+        return <CartList />;
     }
 
     function onCartCancel() {
-        console.log("cancelled");
+        console.log("cancel button clicked");
         setIsCartWindowVisible(false);
     }
 
@@ -39,7 +48,13 @@ export default function Header({
                     isFooter={true}
                     isCancelButton={true}
                     modalTitle={"Cart"}
-                    modalText={getCartText}
+                    modalText={
+                        cart.length
+                            ? getCartText
+                            : () => {
+                                  return "Cart is empty!";
+                              }
+                    }
                     onCancel={onCartCancel}
                     // я бы сказал что это костыль, так как чтобы закрыть модалку
                     // мы не можем напрямую изменить стейт в функции createNewOrder,
